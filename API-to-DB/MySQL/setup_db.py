@@ -5,12 +5,6 @@ sys.path.append("./API-to-DB/functions")
 from open_json import open_json
 
 
-# connection = MySQLdb.connect(
-#     host='v-analysis.com',
-#     user='root',
-#     passwd='Takanori_6157!',
-#     charset='utf8')
-
     #MySQLに接続
 db_config_path = './API-to-DB/config/db_config.json'
 db_config = open_json(db_config_path)
