@@ -1,0 +1,22 @@
+"""insert into twitter_users(user_id, name, screen_name, user_url,
+                                    user_created_at, description, followers_count, friends_count, 
+                                    statuses_count, following, location, verified, 
+                                    profile_banner_url, profile_banner_path, profile_image_url, profile_image_path, 
+                                    user_api_archive
+                                    ) 
+            values ('{self.user_id}', '{self.name}', '{self.screen_name}', '{self.user_url}',
+                '{self.user_created_at}', '{self.description}', '{self.followers_count}', '{self.friends_count}',
+                '{self.statuses_count}', '{self.following}', '{self.location}', '{self.verified}', 
+                '{self.profile_banner_url}', '{self.profile_banner_path}', '{self.profile_image_url}', '{self.profile_banner_path}',
+                '{self.user_api_archive}')"""
+
+
+
+"""insert into tweets (tweet_id, created_at, tweet_url, favorite_count,
+                                retweet_count, tweet_text, user_id, favorited,
+                                retweeted, possibly_sensitive, lang, is_quote_status, 
+                                in_reply_to_user_id, photo_count, tweet_type, api_archive) 
+            values ('{self.tweet_id}', '{self.created_at}', '{self.tweet_url}', '{self.favorite_count}', 
+                '{self.retweet_count}', '{self.tweet_text}', '{self.user_id}', '{self.favorited}',
+                '{self.retweeted}', '{self.possibly_sensitive}', '{self.lang}', '{self.is_quote_status}',
+                '{self.in_reply_to_user_id}', '{self.photo_count}', '{self.tweet_type}', '{self.user_api_archive}')"""

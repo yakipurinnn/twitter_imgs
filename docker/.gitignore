@@ -1,0 +1,4 @@
+.env
+phpMyAdmin/config.d/
+mysql/lib/
+backup/

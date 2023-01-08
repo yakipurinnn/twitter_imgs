@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  #MySQL用コンテナ
+  mysql:
+    container_name: mysql
+    build: ./mysql
+    volumes:
+      - ./mysql/lib:/var/lib/mysql
+      - ./mysql/logs:/var/log/mysql
+    #   - ./mysql/etc:/etc/mysql    #設定ファイルの反映
+    ports:
+      - ${DB_PORT}:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      # - MYSQL_USER=${MYSQL_USER}
+      # - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - TZ='${TZ}'
+    command: mysqld --sql_mode="" --character-set-server=utf8 --collation-server=utf8_slovenian_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0 --default-time-zone=Asia/Tokyo --innodb_file_per_table 
+
+  #phpMyAdmin用コンテナ
+  phpmyadmin:
+    container_name: phpMyAdmin
+    depends_on:
+      - mysql
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: mysql
+      # PMA_USER: root
+      # PMA_PASSWORD: $MYSQL_ROOT_PASSWORD
+    restart: always
+    #新規起動時は予め設定ファイルをコンテナからコピーしておく
+    # volumes:
+    #   - ./phpMyAdmin/config.d:/etc/phpmyadmin
+    ports:
+      - ${PMA_PORT}:80
