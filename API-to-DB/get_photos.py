@@ -100,7 +100,6 @@ class GetPhotos:
 
                 if only_tweet_flag == 0:
                     max_id = tweet_id
-
             self.connection.commit()
 
     def get_latest_photos(self, user_id, count, max_id=None):

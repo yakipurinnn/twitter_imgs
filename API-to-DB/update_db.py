@@ -23,6 +23,7 @@ class UpdateDB:
         self.followers_count = self.tweet['user']['followers_count']
         self.friends_count = self.tweet['user']['friends_count']
         self.statuses_count = self.tweet['user']['statuses_count']
+        self.favourites_count = self.tweet['user']['favourites_count']
         self.following = int(self.tweet['user']['following'])
         self.location = self.tweet['user']['location']
         self.verified = int(self.tweet['user']['verified'])
@@ -72,9 +73,9 @@ class UpdateDB:
             self.photo_count = 0
         self.api_archive = json.dumps(self.tweet)  #json形式に変換
 
-        self.twetter_users_columns =  {'user_id': self.user_id, 'name': self.name, 'screen_name':self.screen_name, 'user_url':self.user_url,
+        self.twitter_users_columns =  {'user_id': self.user_id, 'name': self.name, 'screen_name':self.screen_name, 'user_url':self.user_url,
                                         'user_created_at':self.user_created_at, 'description':self.description, 'followers_count':self.followers_count, 'friends_count':self.friends_count, 
-                                        'statuses_count':self.statuses_count, 'following':self.following, 'location':self.location, 'verified':self.verified, 
+                                        'statuses_count':self.statuses_count, 'favourites_count':self.favourites_count, 'following':self.following, 'location':self.location, 'verified':self.verified, 
                                         'profile_banner_url':self.profile_banner_url, 'profile_banner_path':self.profile_banner_path, 'profile_image_url':self.profile_image_url, 'profile_image_path':self.profile_banner_path,
                                         'user_api_archive':self.user_api_archive}
 
@@ -228,7 +229,7 @@ class UpdateDB:
         self.cursor.execute(sql)
 
     def update_twitter_users(self):
-        update_columns = self.twetter_users_columns.copy()
+        update_columns = self.twitter_users_columns.copy()
         update_columns = self.del_None_from_columns(update_columns)
         try:
             sql = self.create_insert_statement('twitter_users', update_columns)
