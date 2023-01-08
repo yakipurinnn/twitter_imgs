@@ -214,9 +214,14 @@ class UpdateDB:
         
         update_columns['update_time'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')    #update_timeも更新する
 
+        #favoriteとretweetは新たにされた場合のみ更新する、していない(0)の場合は更新しない
+        if self.favorited==0:
+            del update_columns['favorited']
+        if self.retweeted==0:
+            del update_columns['retweeted']
+
         del update_columns['tweet_id'], update_columns['created_at'], update_columns['tweet_url'], update_columns['user_id'],\
-            update_columns['is_quote_status'], update_columns['in_reply_to_user_id'], update_columns['photo_count'], update_columns['tweet_type'],\
-            update_columns['favorited'], update_columns['retweeted'] #更新が必要ないカラムを除去、favorite, retweet記録は基本的に更新しない
+            update_columns['is_quote_status'], update_columns['in_reply_to_user_id'], update_columns['photo_count'], update_columns['tweet_type']
         
         update_columns = self.del_None_from_columns(update_columns)
         sql = self.create_update_statement('tweets', update_columns, 'tweet_id', self.tweet_id)
