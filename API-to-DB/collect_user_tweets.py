@@ -1,10 +1,10 @@
-from get_photos import GetPhotos
 import tweepy
 import pprint
 import os
 import subprocess
 import MySQLdb
 from functions.open_json import open_json
+from get_photos import GetPhotos
 
 
 if __name__ == '__main__':

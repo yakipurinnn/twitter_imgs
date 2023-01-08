@@ -97,19 +97,6 @@ class GetPhotos:
                 print('total:', total, 'loop:', i*(count-1) + j + 1, j, 'tweet_id:', tweet_id, 'screen_name:',tweet['user']['screen_name'], tweet['user']['id'], created_at, tweet_type, time.time()-time1)
 
                 #DB登録、更新
-                # updatedb = UpdateDB(self.connection, tweet, tweet_type)
-                # try:
-                #     updatedb.insert_tweet_status()    #tweetのstatusをDBにinsert
-                #     if tweet_type == 'photo':    #画像ダウンロード
-                #         download_phtos = DownloadPhotos(tweet)
-                #         download_phtos.download()
-                # except IntegrityError as e:
-                #     updatedb.update_tweet_status()    #tweetのstatusをupdate
-                #     print('    このツイートは既に登録済みです。ツイート情報を更新します。')
-                        
-                # updatedb.update_twitter_users()    #tweet_usreをDBにinsertまたはupdate
-                # updatedb.insert_hash_tags()   #hashtag情報をDBに登録
-
                 updatedb = self.controlldb(tweet)
 
                 if only_tweet_flag == 0:
@@ -164,6 +151,4 @@ class GetPhotos:
 
         if not quoted_flag:
             return updatedb
-
-        
 
