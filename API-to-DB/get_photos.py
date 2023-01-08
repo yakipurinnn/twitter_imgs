@@ -33,7 +33,7 @@ class GetPhotos:
                 if get_type == 'favorite':
                     tweets = self.api.get_favorites(user_id=user_id, max_id=max_id, count=count, include_ext_alt_text=True)
                 elif get_type == 'user_timeline':
-                    tweets = self.api.user_timeline(user_id=user_id, max_id=max_id, count=count, exclude_replies=True, include_rts=False , include_ext_alt_text=True)
+                    tweets = self.api.user_timeline(user_id=user_id, max_id=max_id, count=count, exclude_replies=True, include_ext_alt_text=True)
                 print('tweetは', len(tweets), '件です')
             except Unauthorized as e:
                 print(type(e), e)
@@ -93,7 +93,6 @@ class GetPhotos:
                 tweet_id = tweet['id']
                 created_at = to_JST_time(tweet['created_at'])
                 tweet_type = get_tweet_type(tweet)
-
                 print('total:', total, 'loop:', i*(count-1) + j + 1, j, 'tweet_id:', tweet_id, 'screen_name:',tweet['user']['screen_name'], tweet['user']['id'], created_at, tweet_type, time.time()-time1)
 
                 #DB登録、更新
@@ -103,7 +102,6 @@ class GetPhotos:
                     max_id = tweet_id
 
             self.connection.commit()
-
 
     def get_latest_photos(self, user_id, count, max_id=None):
         get_type = 'favorite'
@@ -123,12 +121,14 @@ class GetPhotos:
             max_tweet_id = 0
         return max_tweet_id
 
-    def controlldb(self, tweet, quoted_flag=False):
+    def controlldb(self, tweet, quoted_flag=False, RT_flag=False):
         tweet_id = tweet['id']
         tweet_type = get_tweet_type(tweet)
         is_quote_status = int(tweet['is_quote_status'])
         if quoted_flag:
             print('    引用元ツイートの情報を登録します', 'tweet_id:', tweet_id, tweet_type)
+        if  RT_flag:
+            print('    リツイート元の情報を登録します', 'retweeted_id:', tweet_id, tweet_type)
 
         if is_quote_status==1:
             try:
@@ -137,18 +137,27 @@ class GetPhotos:
                 print(    type(e), e, '引用元ツイートは既に削除された可能性があります')
 
         updatedb = UpdateDB(self.connection, tweet, tweet_type)
-        try:
-            updatedb.insert_tweet_status()    #tweetのstatusをDBにinsert
-            if tweet_type == 'photo':    #画像ダウンロード
-                download_phtos = DownloadPhotos(tweet)
-                download_phtos.download()
-        except IntegrityError as e:
-            updatedb.update_tweet_status()    #tweetのstatusをupdate
-            print('    このツイートは既に登録済みです。ツイート情報を更新します。', 'tweet_id:', tweet_id)
-                
-        updatedb.update_twitter_users()    #twitter_userをDBにinsertまたはupdate
-        updatedb.insert_hash_tags()   #hashtag情報をDBに登録
 
-        if not quoted_flag:
+        #RTの場合
+        if 'retweeted_status' in tweet.keys():
+            try:
+                self.controlldb(tweet['retweeted_status'], RT_flag=True)
+                updatedb.insert_retweet()
+            except IntegrityError as e:
+                print('    このリツイートは既に登録済みです。', 'tweet_id:', tweet_id)
+        else:
+            try:
+                updatedb.insert_tweet_status()    #tweetのstatusをDBにinsert
+                if tweet_type == 'photo':    #画像ダウンロード
+                    download_phtos = DownloadPhotos(tweet)
+                    download_phtos.download()
+            except IntegrityError as e:
+                updatedb.update_tweet_status()    #tweetのstatusをupdate
+                print('    このツイートは既に登録済みです。ツイート情報を更新します。', 'tweet_id:', tweet_id)
+
+            updatedb.update_twitter_users()    #twitter_userをDBにinsertまたはupdate
+            updatedb.insert_hash_tags()   #hashtag情報をDBに登録
+
+        if not quoted_flag or RT_flag:
             return updatedb
 

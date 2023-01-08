@@ -100,7 +100,7 @@ class UpdateDB:
                 else:
                     ext_alt_text = None
 
-                photo_columns = {'photo_id': photo_id, 'photo_url': photo_url, 'photo_path ': photo_path, 
+                photo_columns = {'photo_id': photo_id, 'photo_url': photo_url, 'photo_path': photo_path, 
                                 'ext_alt_text': ext_alt_text, 'tweet_id': self.tweet_id}
                 self.photo_list.append(photo_columns)
 
@@ -151,7 +151,13 @@ class UpdateDB:
                 if self.tweet_hashtag_list[i]['hashtag_id'] == 0:
                     self.tweet_hashtag_list[i]['hashtag_id'] = self.last_id + 1 + new_ht_count
                     new_ht_count += 1
-        
+
+        #retweets関連
+        self.retweets_columns={'retweet_id': self.tweet_id, 'retweeted_at': self.created_at, 'user_id': self.user_id, 
+                                'retweeted_id': None}
+        if 'retweeted_status' in tweet.keys():
+            self.retweets_columns['retweeted_id'] = self.tweet['retweeted_status']['id']
+            
         #save_points関連
         self.save_points_columns = {'saved_flag': 'saved_flag + 1'}
 
@@ -232,7 +238,6 @@ class UpdateDB:
 
     def insert_hash_tags(self):
         if not self.hashtag_list == []:    #hashtagがあるなら
-
             self.cursor.execute(f"SELECT * from tweet_hashtag WHERE tweet_id='{self.tweet_id}'")
             is_exists_tweet_ht=self.cursor.fetchall()
 
@@ -244,7 +249,13 @@ class UpdateDB:
 
                 for i in range(len(self.insert_ht_list)):
                     sql = self.create_insert_statement('hashtags', self.insert_ht_list[i])
-                    self.cursor.execute(sql)       
+                    self.cursor.execute(sql)
+
+    def insert_retweet(self):
+        retweets_columns = self.retweets_columns.copy()
+        retweets_columns = self.del_None_from_columns(retweets_columns)
+        sql = self.create_insert_statement('retweets', retweets_columns)
+        self.cursor.execute(sql)
 
     def create_insert_statement(self, table_name, columns):
         '''

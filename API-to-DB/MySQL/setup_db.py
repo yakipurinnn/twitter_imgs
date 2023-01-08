@@ -4,7 +4,6 @@ import sys
 sys.path.append("./API-to-DB/functions")
 from open_json import open_json
 
-
     #MySQLに接続
 db_config_path = './API-to-DB/config/db_config.json'
 db_config = open_json(db_config_path)
@@ -89,6 +88,13 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS tweet_hashtag(
 cursor.execute("""CREATE TABLE IF NOT EXISTS hashtags(
     hashtag_id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     hashtag text
+    )""")
+
+cursor.execute("""CREATE TABLE IF NOT EXISTS retweets(
+    retweet_id BIGINT UNSIGNED PRIMARY KEY,
+    retweeted_at DATETIME,
+    user_id BIGINT UNSIGNED,
+    retweeted_id BIGINT UNSIGNED
     )""")
 
 cursor.execute("""CREATE TABLE IF NOT EXISTS save_users(
