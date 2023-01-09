@@ -66,6 +66,7 @@ class UpdateDB:
         else:
             self.quoted_tweet_id = None
         self.in_reply_to_user_id = self.tweet['in_reply_to_user_id']
+        self.in_reply_to_status_id = self.tweet['in_reply_to_status_id']
         self.tweet_type = tweet_type
         if self.tweet_type == 'photo':
             self.photo_count = len(self.tweet['extended_entities']['media'])
@@ -82,7 +83,7 @@ class UpdateDB:
         self.tweets_columns = {'tweet_id':self.tweet_id, 'created_at':self.created_at, 'tweet_url':self.tweet_url, 'favorite_count':self.favorite_count,
                                 'retweet_count':self.retweet_count, 'tweet_text':self.tweet_text, 'user_id':self.user_id, 'favorited':self.favorited,
                                 'retweeted':self.retweeted, 'possibly_sensitive':self.possibly_sensitive, 'lang':self.lang, 'is_quote_status':self.is_quote_status, 'quoted_tweet_id':self.quoted_tweet_id,
-                                'in_reply_to_user_id':self.in_reply_to_user_id, 'photo_count':self.photo_count, 'tweet_type':self.tweet_type, 'api_archive':self.user_api_archive}
+                                'in_reply_to_user_id':self.in_reply_to_user_id, 'in_reply_to_status_id':self.in_reply_to_status_id,'photo_count':self.photo_count, 'tweet_type':self.tweet_type, 'api_archive':self.user_api_archive}
 
         #photos関連
         if self.tweet_type == 'photo':

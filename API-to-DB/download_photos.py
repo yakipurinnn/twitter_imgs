@@ -31,7 +31,7 @@ class DownloadPhotos:
 
         #保存するディレクトリをtwitter_user毎に作成
         try:
-            os.makedirs(self.user_photos_path)
+            # os.makedirs(self.user_photos_path)
             if 'profile_banner_url' in tweet['user'].keys():
                 os.makedirs(self.user_profile_banners_path)
             if 'profile_image_url' in tweet['user'].keys():
@@ -39,7 +39,6 @@ class DownloadPhotos:
         except FileExistsError:
             # print('    このuserディレクトリは既に作成済みです', self.user_id , self.screen_name)
             pass
-
 
         for i in range(self.photo_count):
             photo_id = tweet['extended_entities']['media'][i]['media_url_https'].replace('https://pbs.twimg.com/media/', '')

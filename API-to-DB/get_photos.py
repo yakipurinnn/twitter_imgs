@@ -33,7 +33,7 @@ class GetPhotos:
                 if get_type == 'favorite':
                     tweets = self.api.get_favorites(user_id=user_id, max_id=max_id, count=count, include_ext_alt_text=True)
                 elif get_type == 'user_timeline':
-                    tweets = self.api.user_timeline(user_id=user_id, max_id=max_id, count=count, exclude_replies=True, include_ext_alt_text=True)
+                    tweets = self.api.user_timeline(user_id=user_id, max_id=max_id, count=count, include_ext_alt_text=True) #exclude_replies=True,  include_rts=False
                 print('tweetは', len(tweets), '件です')
             except Unauthorized as e:
                 print(type(e), e)
@@ -97,6 +97,10 @@ class GetPhotos:
 
                 #DB登録、更新
                 updatedb = self.controlldb(tweet)
+                if total==1 and get_type=='user_timeline':    #get_typeがuser_timelineの場合、初回のみtwitter_user情報を更新
+                    updatedb.update_twitter_users()
+                elif get_type == 'favorite':
+                    updatedb.update_twitter_users()
 
                 if only_tweet_flag == 0:
                     max_id = tweet_id
@@ -154,7 +158,8 @@ class GetPhotos:
                 updatedb.update_tweet_status()    #tweetのstatusをupdate
                 print('    このツイートは既に登録済みです。ツイート情報を更新します。', 'tweet_id:', tweet_id)
 
-            updatedb.update_twitter_users()    #twitter_userをDBにinsertまたはupdate
+            if quoted_flag or RT_flag:
+                updatedb.update_twitter_users()    #twitter_userをDBにinsertまたはupdate
             updatedb.insert_hash_tags()   #hashtag情報をDBに登録
 
         if not quoted_flag or RT_flag:

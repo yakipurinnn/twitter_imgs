@@ -1,3 +1,5 @@
+#mysql設定ファイルはコンテナ内/etc/my.confから持ってくる
+
 version: '3'
 
 services:
@@ -8,7 +10,7 @@ services:
     volumes:
       - ./mysql/lib:/var/lib/mysql
       - ./mysql/logs:/var/log/mysql
-    #   - ./mysql/etc:/etc/mysql    #設定ファイルの反映
+      - ./mysql/conf.d:/etc/mysql/conf.d    #設定ファイルの反映
     ports:
       - ${DB_PORT}:3306
     environment:
@@ -17,7 +19,7 @@ services:
       # - MYSQL_USER=${MYSQL_USER}
       # - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - TZ='${TZ}'
-    command: mysqld --sql_mode="" --character-set-server=utf8 --collation-server=utf8_slovenian_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0 --default-time-zone=Asia/Tokyo --innodb_file_per_table 
+    command: mysqld --sql_mode="" --character-set-server=utf8 --collation-server=utf8_slovenian_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0 --innodb_file_per_table 
 
   #phpMyAdmin用コンテナ
   phpmyadmin:

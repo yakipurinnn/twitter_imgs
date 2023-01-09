@@ -1,8 +1,7 @@
 import pprint
 import MySQLdb
 import sys
-sys.path.append("./API-to-DB/functions")
-from open_json import open_json
+from functions.open_json import open_json
 
     #MySQLに接続
 db_config_path = './API-to-DB/config/db_config.json'
@@ -42,6 +41,7 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS tweets(
     is_quote_status BOOLEAN,
     quoted_tweet_id BIGINT UNSIGNED,
     in_reply_to_user_id BIGINT UNSIGNED,
+    in_reply_to_status_id BIGINT UNSIGNED,
     photo_count INT DEFAULT(0), 
     tweet_type TEXT,
     deleted BOOLEAN,
@@ -68,6 +68,7 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS twitter_users(
     followers_count INT,
     friends_count INT,
     statuses_count INT,
+    favourites_count INT,
     following BOOLEAN,
     location TEXT,
     verified BOOLEAN,
