@@ -80,6 +80,13 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS twitter_users(
     user_api_archive TEXT
     )""")
 
+cursor.execute("""CREATE TABLE IF NOT EXISTS user_relations(
+    following BIGINT UNSIGNED,
+    followed BIGINT UNSIGNED,
+    update_time DATETIME DEFAULT(CURRENT_TIMESTAMP),
+    PRIMARY KEY(following, followed)
+    )""")
+
 #tweetとhashtagの中間テーブル
 cursor.execute("""CREATE TABLE IF NOT EXISTS tweet_hashtag(
     tweet_hashtag_id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -101,8 +108,11 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS retweets(
 
 cursor.execute("""CREATE TABLE IF NOT EXISTS save_users(
     user_id BIGINT UNSIGNED PRIMARY KEY,
-    saved_falg INT DEFAULT(0), 
-    update_time DATETIME DEFAULT(CURRENT_TIMESTAMP)
+    tweets_saved_flag INT DEFAULT(0), 
+    tweets_update_time DATETIME DEFAULT(CURRENT_TIMESTAMP),
+    relation_saved_flag INT DEFAULT(0), 
+    relation_next_cursor BIGINT DEFAULT(-1),
+    relation_update_time DATETIME DEFAULT(CURRENT_TIMESTAMP)
     )""")
 
 cursor.execute("""CREATE TRIGGER IF NOT EXISTS user_id_to_save_users 

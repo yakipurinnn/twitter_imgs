@@ -34,7 +34,7 @@ if __name__ == '__main__':
     
     cursor = connection.cursor()
     #まだタイムラインを収集していないuserでfollower5000人以上またはフォローしているuserのuser_idを取得
-    sql = 'SELECT save_users.user_id FROM save_users INNER JOIN twitter_users ON save_users.user_id = twitter_users.user_id WHERE save_users.saved_flag=0 AND (twitter_users.following=1);'
+    sql = 'SELECT save_users.user_id FROM save_users INNER JOIN twitter_users ON save_users.user_id = twitter_users.user_id WHERE save_users.tweets_saved_flag=0 AND (twitter_users.following=1);'
     cursor.execute(sql)
     users_id = cursor.fetchall()
     
@@ -43,7 +43,7 @@ if __name__ == '__main__':
             print('user_id:', users_id[i][0])
             get_photos.get_user_photos(user_id=users_id[i][0], count=200, max_id=None)
     else:
-        sql  = 'SELECT save_users.user_id FROM save_users INNER JOIN twitter_users ON save_users.user_id = twitter_users.user_id WHERE save_users.saved_flag=0 AND (twitter_users.following=1);'
+        sql  = 'SELECT save_users.user_id FROM save_users INNER JOIN twitter_users ON save_users.user_id = twitter_users.user_id WHERE save_users.tweets_saved_flag=0 AND (twitter_users.following=1);'
         cursor.execute(sql)
         users_id = cursor.fetchall()
         for i in range(len(users_id)):
