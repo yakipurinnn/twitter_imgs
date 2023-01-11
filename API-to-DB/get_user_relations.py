@@ -30,15 +30,13 @@ class GetUserRelations:
             try:
                 following_users_status = self.api.get_friends(user_id=following_user_id, count=count, cursor=next_cursor, skip_status=True)
                 print('取得されたフォロワーは', len(following_users_status[0]), '件です')
-                time.sleep(3)
             except Unauthorized as e:
                 print(type(e), e)
                 break
-            except TooManyRequests as e:
-                print(type(e), e)
-                print("twitterAPI制限のため1分間待機します")
-                time.sleep(60)
-                continue
+            # except TooManyRequests as e:
+            #     print(type(e), e)
+            #     print("twitterAPI制限のため1分間待機します")
+            #     continue
             except TwitterServerError as e:
                 print(type(e), e)
                 print("サーバーエラーのため1分間待機します")

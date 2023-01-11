@@ -1,6 +1,5 @@
 import pprint
 import time
-import datetime
 import os
 import subprocess
 import tweepy
