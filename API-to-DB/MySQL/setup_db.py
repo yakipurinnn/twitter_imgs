@@ -119,6 +119,10 @@ cursor.execute("""CREATE TRIGGER IF NOT EXISTS user_id_to_save_users
     AFTER INSERT ON twitter_users FOR EACH ROW 
     INSERT INTO save_users(user_id) VALUES(new.user_id)""")
 
+cursor.execute("""CREATE TABLE IF NOT EXISTS tweet_archives(
+    tweet_id BIGINT UNSIGNED PRIMARY KEY,
+    tweet_json_archive TEXT 
+    )""")
 #インデックス作成
 # cursor.execute("""DROP tweet_id_index on tweets""")
 

@@ -84,7 +84,7 @@ class UpdateDB:
             self.tweets_columns = {'tweet_id':self.tweet_id, 'created_at':self.created_at, 'tweet_url':self.tweet_url, 'favorite_count':self.favorite_count,
                                     'retweet_count':self.retweet_count, 'tweet_text':self.tweet_text, 'user_id':self.user_id, 'favorited':self.favorited,
                                     'retweeted':self.retweeted, 'possibly_sensitive':self.possibly_sensitive, 'lang':self.lang, 'is_quote_status':self.is_quote_status, 'quoted_tweet_id':self.quoted_tweet_id,
-                                    'in_reply_to_user_id':self.in_reply_to_user_id, 'in_reply_to_status_id':self.in_reply_to_status_id,'photo_count':self.photo_count, 'tweet_type':self.tweet_type, 'api_archive':self.user_api_archive}
+                                    'in_reply_to_user_id':self.in_reply_to_user_id, 'in_reply_to_status_id':self.in_reply_to_status_id,'photo_count':self.photo_count, 'tweet_type':self.tweet_type}
 
             #photos関連
             if self.tweet_type == 'photo':
@@ -161,10 +161,10 @@ class UpdateDB:
             if 'retweeted_status' in self.tweet.keys():
                 self.retweets_columns['retweeted_id'] = self.tweet['retweeted_status']['id']
 
+            self.tweet_archive_columns={'tweet_id': self.tweet_id, 'tweet_api_archive': self.api_archive}
+        #save_points関連
         self.user_relations_columns = {'followed': self.user_id}
 
-        #save_points関連
-        
 
     def escape_sql(self, string):
         #SQL文用エスケープ
@@ -206,6 +206,7 @@ class UpdateDB:
         
         sql = self.create_insert_statement('tweets', insert_columns)
         self.cursor.execute(sql)
+        self.insert_tweet_archives()
 
         if self.tweet_type == 'photo':
             for i in range(self.photo_count):
@@ -231,6 +232,7 @@ class UpdateDB:
         update_columns = self.del_None_from_columns(update_columns)
         sql = self.create_update_statement('tweets', update_columns, 'tweet_id', self.tweet_id)
         self.cursor.execute(sql)
+        self.update_tweet_archives()
 
     def update_twitter_users(self):
         update_columns = self.twitter_users_columns.copy()
@@ -273,7 +275,17 @@ class UpdateDB:
         user_relations_columns['update_time'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         sql = self.create_insert_statement('user_relations', user_relations_columns)
-        self.cursor.execute(sql)        
+        self.cursor.execute(sql)
+    
+    def insert_tweet_archives(self):
+        tweet_archive_columns = self.tweet_archive_columns.copy()
+        sql = self.create_insert_statement('tweet_archives', tweet_archive_columns)
+        self.cursor.execute(sql)
+
+    def update_tweet_archives(self):
+        tweet_archive_columns = self.tweet_archive_columns.copy()
+        sql = self.create_update_statement('tweet_archives', tweet_archive_columns, 'tweet_id', self.tweet_id)
+        self.cursor.execute(sql)
 
     def create_insert_statement(self, table_name, columns):
         '''
