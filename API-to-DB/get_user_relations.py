@@ -22,14 +22,18 @@ class GetUserRelations:
         temp = 1000
         total=1
         next_cursor = next_cursor
-        last_user_flag=False
+        last_user_flag = False
 
         for i in range(temp):
+            dupulicate_count = 0
             if last_user_flag:
                 break
             try:
                 following_users_status = self.api.get_friends(user_id=following_user_id, count=count, cursor=next_cursor, skip_status=True)
                 print('取得されたフォロワーは', len(following_users_status[0]), '件です')
+                #フォロー数が0の場合、break
+                if len(following_users_status[0])==0 and last_user_flag==False and next_cursor==-1:
+                    break
             except Unauthorized as e:
                 print(type(e), e)
                 break
@@ -57,8 +61,11 @@ class GetUserRelations:
                 except IntegrityError as e:    #重複エラーの場合はbreak (following_usersは新しくfollowした順に返されるため)
                     self.connection.commit()
                     print(type(e), e)
-                    last_user_flag=True
-                    break
+                    dupulicate_count += 1
+                    if dupulicate_count >10:
+                        print('10回連続で重複したため次のユーザーへ移ります')
+                        last_user_flag=True
+                        break
 
                 total += 1
                 

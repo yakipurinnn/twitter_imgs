@@ -21,8 +21,8 @@ def collect_user_tweets(connection, get_photos, limit_time, sql=None):
         for i in range(len(users_id)):
             print('user_id:', users_id[i][0])
             get_photos.get_user_photos(user_id=users_id[i][0], count=200, max_id=None)
-            if time.time()-limit_time > 900:
-                print('user_timeline取得から経過時間は', time.time()-limit_time, '秒です')
+            print('user_timeline取得から経過時間は', time.time()-limit_time, '秒です')
+            if time.time()-limit_time > 900:        
                 break
     else:
         sql  = 'SELECT save_users.user_id FROM save_users INNER JOIN twitter_users ON save_users.user_id = twitter_users.user_id WHERE twitter_users.following=1;'
@@ -85,7 +85,7 @@ if __name__ == '__main__':
             print(type(e), e, 'api制限に達したためuser_timelineの取得に移ります')
 
         time1 = time.time()
-        if i%32 == 0:
+        if i%32 == 0 and i>0:
             get_photos.get_latest_photos(user_id=my_user_id['user_id'], count=200)
         
         collect_user_tweets(connection, get_photos, time1)
