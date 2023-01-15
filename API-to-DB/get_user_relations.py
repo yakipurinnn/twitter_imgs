@@ -37,6 +37,14 @@ class GetUserRelations:
             except Unauthorized as e:
                 print(type(e), e)
                 break
+            except NotFound as e:
+                print("既にこのユーザーは削除された可能性があります")
+                updatedb = UpdateDB(self.connection)
+                updatedb.save_deleted_user(following_user_id)
+                updatedb.save_relations(following_user_id)
+                self.connection.commit()
+                last_user_flag=True
+                continue
             # except TooManyRequests as e:
             #     print(type(e), e)
             #     print("twitterAPI制限のため1分間待機します")

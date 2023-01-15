@@ -6,51 +6,57 @@ from MySQLdb import IntegrityError
 from functions.to_JST_time import to_JST_time
 
 class UpdateDB:
-    def __init__(self, connection, status, tweet_type=None, user_only=False):
+    def __init__(self, connection, status=None, tweet_type=None, user_only=False):
         self.connection = connection
         self.cursor = self.connection.cursor()
 
-        self.tweet = status
-        self.user_status = self.tweet if user_only else self.tweet['user']
-        self.tweet_id = self.tweet['id']
+        self.user_only = True if status is None else user_only
 
-        #twitter_user関連
-        self.user_id = self.user_status['id']
-        self.name = self.user_status['name']
-        self.screen_name = self.user_status['screen_name']
-        self.user_url = f'https://twitter.com/{self.screen_name}'
-        self.user_created_at = to_JST_time(self.user_status['created_at'])
-        self.description = self.user_status['description']
-        self.followers_count = self.user_status['followers_count']
-        self.friends_count = self.user_status['friends_count']
-        self.statuses_count = self.user_status['statuses_count']
-        self.favourites_count = self.user_status['favourites_count']
-        self.following = int(self.user_status['following'])
-        self.location = self.user_status['location']
-        self.verified = int(self.user_status['verified'])
-        #profile_banner_url, profile_image_urlが含まれているかを判定
-        if 'profile_banner_url' in self.user_status.keys():
-            self.profile_banner_url = self.user_status['profile_banner_url']
-            self.profile_banner_path = f'./downloaded_imgs/profile_banners/{self.user_id}/{self.screen_name}_banner'
-        else:
-            self.profile_banner_url = None
-            self.profile_banner_path = None
-        if 'profile_image_url' in self.user_status.keys():
-            self.profile_image_url = self.user_status['profile_image_url']
-            self.profile_banner_path = f'./downloaded_imgs/profile_images/{self.user_id}/{self.screen_name}_image'
-        else:
-            self.profile_image_url = None
-            self.profile_banner_path = None
-        self.user_api_archive = json.dumps(self.user_status)
+        if not status is None:
+            self.tweet = status
+            self.user_status = self.tweet if user_only else self.tweet['user']
+            self.tweet_id = self.tweet['id']
 
-        self.twitter_users_columns =  {'user_id': self.user_id, 'name': self.name, 'screen_name':self.screen_name, 'user_url':self.user_url,
-                                        'user_created_at':self.user_created_at, 'description':self.description, 'followers_count':self.followers_count, 'friends_count':self.friends_count, 
-                                        'statuses_count':self.statuses_count, 'favourites_count':self.favourites_count, 'following':self.following, 'location':self.location,
-                                        'verified':self.verified, 'profile_banner_url':self.profile_banner_url, 'profile_banner_path':self.profile_banner_path, 'profile_image_url':self.profile_image_url,
-                                        'profile_image_path':self.profile_banner_path, 'user_api_archive':self.user_api_archive}
+            #twitter_user関連
+            self.user_id = self.user_status['id']
+            self.name = self.user_status['name']
+            self.screen_name = self.user_status['screen_name']
+            self.user_url = f'https://twitter.com/{self.screen_name}'
+            self.user_created_at = to_JST_time(self.user_status['created_at'])
+            self.description = self.user_status['description']
+            self.followers_count = self.user_status['followers_count']
+            self.friends_count = self.user_status['friends_count']
+            self.statuses_count = self.user_status['statuses_count']
+            self.favourites_count = self.user_status['favourites_count']
+            self.following = int(self.user_status['following'])
+            self.location = self.user_status['location']
+            self.verified = int(self.user_status['verified'])
+            #profile_banner_url, profile_image_urlが含まれているかを判定
+            if 'profile_banner_url' in self.user_status.keys():
+                self.profile_banner_url = self.user_status['profile_banner_url']
+                self.profile_banner_path = f'./downloaded_imgs/profile_banners/{self.user_id}/{self.screen_name}_banner'
+            else:
+                self.profile_banner_url = None
+                self.profile_banner_path = None
+            if 'profile_image_url' in self.user_status.keys():
+                self.profile_image_url = self.user_status['profile_image_url']
+                self.profile_banner_path = f'./downloaded_imgs/profile_images/{self.user_id}/{self.screen_name}_image'
+            else:
+                self.profile_image_url = None
+                self.profile_banner_path = None
+            self.user_api_archive = json.dumps(self.user_status)
+
+            self.twitter_users_columns =  {'user_id': self.user_id, 'name': self.name, 'screen_name':self.screen_name, 'user_url':self.user_url,
+                                            'user_created_at':self.user_created_at, 'description':self.description, 'followers_count':self.followers_count, 'friends_count':self.friends_count, 
+                                            'statuses_count':self.statuses_count, 'favourites_count':self.favourites_count, 'following':self.following, 'location':self.location,
+                                            'verified':self.verified, 'profile_banner_url':self.profile_banner_url, 'profile_banner_path':self.profile_banner_path, 'profile_image_url':self.profile_image_url,
+                                            'profile_image_path':self.profile_banner_path, 'user_api_archive':self.user_api_archive}
+
+            #save_points関連
+            self.user_relations_columns = {'followed': self.user_id}
 
         #tweet_status関連
-        if not user_only:
+        if not self.user_only:
             #tz情報を除去し、日本標準時に変換
             self.created_at = to_JST_time(self.tweet['created_at'])
             self.tweet_url = f'https://twitter.com/{self.screen_name}/status/{self.tweet_id}'
@@ -162,11 +168,9 @@ class UpdateDB:
                 self.retweets_columns['retweeted_id'] = self.tweet['retweeted_status']['id']
 
             self.tweet_archive_columns={'tweet_id': self.tweet_id, 'tweet_api_archive': self.api_archive}
-        #save_points関連
-        self.user_relations_columns = {'followed': self.user_id}
 
-
-    def escape_sql(self, string):
+    @classmethod
+    def escape_sql(cls, string):
         #SQL文用エスケープ
         if type(string) == str:
             if "'" in string:
@@ -287,7 +291,8 @@ class UpdateDB:
         sql = self.create_update_statement('tweet_archives', tweet_archive_columns, 'tweet_id', self.tweet_id)
         self.cursor.execute(sql)
 
-    def create_insert_statement(self, table_name, columns):
+    @classmethod
+    def create_insert_statement(cls, table_name, columns):
         '''
         insertのsql文を生成し返す
         引数table_nameにtable名の文字列を指定
@@ -298,7 +303,7 @@ class UpdateDB:
         insert_values = ''
         
         for name, value in columns.items():
-            value = self.escape_sql(value)
+            value = cls.escape_sql(value)
             insert_columns += ', ' + str(name)
             insert_values += f", '{value}'"
 
@@ -309,7 +314,8 @@ class UpdateDB:
         sql = f'INSERT INTO {table_name}({insert_columns}) VALUES ({insert_values})'
         return sql
 
-    def create_update_statement(self, table_name, columns, id_name, id_value):
+    @classmethod
+    def create_update_statement(cls, table_name, columns, id_name, id_value):
         '''
         create_insert_statementのupdate文バージョン
         引数は同様
@@ -317,7 +323,7 @@ class UpdateDB:
         '''
         update_columns = ''
         for name, value in columns.items():
-            value = self.escape_sql(value)
+            value = cls.escape_sql(value)
             update_columns += f", {name} = '{value}'"
 
         update_columns = update_columns.replace(',', '', 1)
@@ -340,12 +346,16 @@ class UpdateDB:
         sql = self.create_update_statement('save_users', save_relations_columns, 'user_id', following_user_id).replace("'relation_saved_flag + 1'", "relation_saved_flag + 1")
         self.cursor.execute(sql) 
 
-
     def update_relation_next_cursor(self, following_user_id, next_cursor):
         realtion_next_cursor_columns = {'relation_next_cursor': next_cursor, 'relation_update_time': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         sql = self.create_update_statement('save_users', realtion_next_cursor_columns, 'user_id', following_user_id)
         self.cursor.execute(sql) 
         print(sql)
+
+    def save_deleted_user(self, user_id):
+        deleted_user_columns = {'deleted': 1, 'update_time': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+        sql = self.create_update_statement('twitter_users', deleted_user_columns, 'user_id', user_id)
+        self.cursor.execute(sql) 
 
     #テスト用関数
     def test(self):

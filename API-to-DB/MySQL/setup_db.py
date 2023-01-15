@@ -76,6 +76,7 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS twitter_users(
     profile_banner_path VARCHAR(96),
     profile_image_url VARCHAR(96),
     profile_image_path VARCHAR(96),
+    deleted BOOLEAN,
     update_time DATETIME DEFAULT(CURRENT_TIMESTAMP),
     user_api_archive TEXT
     )""")
