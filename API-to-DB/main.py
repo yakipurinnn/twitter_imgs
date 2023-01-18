@@ -26,7 +26,7 @@ def collect_user_tweets(connection, get_photos, limit_time, sql=None):
                 break
     else:
         sql  = 'SELECT save_users.user_id FROM save_users INNER JOIN twitter_users ON save_users.user_id = twitter_users.user_id WHERE twitter_users.following=1;'
-        collect_user_tweets(api, connection, sql=sql)
+        collect_user_tweets(connection, get_photos, limit_time, sql=sql)
 
 
 def collect_user_relations(connection, get_user_relations, sql=None):
@@ -42,7 +42,7 @@ def collect_user_relations(connection, get_user_relations, sql=None):
             get_user_relations.get_following_users(following_user_id=users_status[i][0], next_cursor=users_status[i][1], count=200)
     else:
         sql = 'SELECT save_users.user_id, save_users.relation_next_cursor FROM save_users INNER JOIN twitter_users ON save_users.user_id = twitter_users.user_id WHERE twitter_users.following=1;'
-        collect_user_relations(api, connection, sql=sql)
+        collect_user_relations(connection, get_user_relations, sql=sql)
 
 
 

@@ -331,11 +331,11 @@ class UpdateDB:
         sql = f'UPDATE {table_name} SET {update_columns} WHERE {id_name} = {id_value}'
         return sql
 
-    def save_tweets(self):
+    def save_tweets(self, user_id):
         save_tweets_columns = {'tweets_saved_flag': 'tweets_saved_flag + 1'}
         save_tweets_columns['tweets_update_time'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')    #update_timeも更新する
         
-        sql = self.create_update_statement('save_users', save_tweets_columns, 'user_id', self.user_id).replace("'tweets_saved_flag + 1'", "tweets_saved_flag + 1")
+        sql = self.create_update_statement('save_users', save_tweets_columns, 'user_id', user_id).replace("'tweets_saved_flag + 1'", "tweets_saved_flag + 1")
         self.cursor.execute(sql) 
         print(sql)
         

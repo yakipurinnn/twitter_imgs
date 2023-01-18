@@ -37,6 +37,9 @@ class GetPhotos:
                 print('tweetは', len(tweets), '件です')
             except Unauthorized as e:
                 print(type(e), e)
+                print("非公開アカウントの可能性があります")
+                updatedb = UpdateDB(self.connection)
+                updatedb.save_tweets(user_id)
                 break
             except TooManyRequests as e:
                 print(type(e), e)
@@ -53,7 +56,8 @@ class GetPhotos:
             if len(tweets) == 0 and get_type == 'user_timeline':
                 temp_max_id = self.get_max_id(user_id=user_id, max_id=max_id, count=count)
                 if temp_max_id == 0:
-                    updatedb.save_tweets()
+                    updatedb = UpdateDB(self.connection)
+                    updatedb.save_tweets(user_id)
                     self.connection.commit()
                     print('apiよりtweetを取得できなかったため終了します')
                     break
@@ -65,7 +69,7 @@ class GetPhotos:
             elif len(tweets) == 1 and get_type == 'user_timeline':
                 temp_max_id = self.get_max_id(user_id=user_id, max_id=max_id, count=count)
                 if temp_max_id == max_id:
-                    updatedb.save_tweets()
+                    updatedb.save_tweets(user_id)
                     self.connection.commit()
                     print('取得できる最後のツイートのため終了します')
                     break
