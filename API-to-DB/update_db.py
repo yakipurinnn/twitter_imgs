@@ -50,7 +50,9 @@ class UpdateDB:
                                             'user_created_at':self.user_created_at, 'description':self.description, 'followers_count':self.followers_count, 'friends_count':self.friends_count, 
                                             'statuses_count':self.statuses_count, 'favourites_count':self.favourites_count, 'following':self.following, 'location':self.location,
                                             'verified':self.verified, 'profile_banner_url':self.profile_banner_url, 'profile_banner_path':self.profile_banner_path, 'profile_image_url':self.profile_image_url,
-                                            'profile_image_path':self.profile_banner_path, 'user_api_archive':self.user_api_archive}
+                                            'profile_image_path':self.profile_banner_path}
+
+            self.twitter_user_archives_columns = {'user_id': self.user_id, 'user_api_archive':self.user_api_archive}
 
             #save_points関連
             self.user_relations_columns = {'followed': self.user_id}
@@ -91,6 +93,8 @@ class UpdateDB:
                                     'retweet_count':self.retweet_count, 'tweet_text':self.tweet_text, 'user_id':self.user_id, 'favorited':self.favorited,
                                     'retweeted':self.retweeted, 'possibly_sensitive':self.possibly_sensitive, 'lang':self.lang, 'is_quote_status':self.is_quote_status, 'quoted_tweet_id':self.quoted_tweet_id,
                                     'in_reply_to_user_id':self.in_reply_to_user_id, 'in_reply_to_status_id':self.in_reply_to_status_id,'photo_count':self.photo_count, 'tweet_type':self.tweet_type}
+
+            self.tweet_archive_columns={'tweet_id': self.tweet_id, 'tweet_api_archive': self.api_archive}
 
             #photos関連
             if self.tweet_type == 'photo':
@@ -167,8 +171,7 @@ class UpdateDB:
             if 'retweeted_status' in self.tweet.keys():
                 self.retweets_columns['retweeted_id'] = self.tweet['retweeted_status']['id']
 
-            self.tweet_archive_columns={'tweet_id': self.tweet_id, 'tweet_api_archive': self.api_archive}
-
+            
     @classmethod
     def escape_sql(cls, string):
         #SQL文用エスケープ
@@ -244,6 +247,7 @@ class UpdateDB:
         try:
             sql = self.create_insert_statement('twitter_users', update_columns)
             self.cursor.execute(sql)
+            self.insert_twitter_user_archives()
         except IntegrityError as e:
             update_columns['update_time'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')    #update_timeも更新する
 
@@ -251,6 +255,7 @@ class UpdateDB:
 
             sql = self.create_update_statement('twitter_users', update_columns, 'user_id', self.user_id)
             self.cursor.execute(sql)
+            self.update_twitter_user_archives()
 
     def insert_hash_tags(self):
         if not self.hashtag_list == []:    #hashtagがあるなら
@@ -289,6 +294,16 @@ class UpdateDB:
     def update_tweet_archives(self):
         tweet_archive_columns = self.tweet_archive_columns.copy()
         sql = self.create_update_statement('tweet_archives', tweet_archive_columns, 'tweet_id', self.tweet_id)
+        self.cursor.execute(sql)
+
+    def insert_twitter_user_archives(self):
+        twitter_user_archive_columns = self.twitter_user_archives_columns.copy()
+        sql = self.create_insert_statement('twitter_user_archives', twitter_user_archive_columns)
+        self.cursor.execute(sql)
+
+    def update_twitter_user_archives(self):
+        twitter_user_archive_columns = self.twitter_user_archives_columns.copy()
+        sql = self.create_update_statement('twitter_user_archives', twitter_user_archive_columns, 'user_id', self.user_id)
         self.cursor.execute(sql)
 
     @classmethod

@@ -46,6 +46,13 @@ class GetPhotos:
                 print("twitterAPI制限のため1分間待機します")
                 time.sleep(60)
                 continue
+            except NotFound as e:
+                print("既にこのユーザーは削除された可能性があります")
+                updatedb = UpdateDB(self.connection)
+                updatedb.save_deleted_user(user_id)
+                updatedb.save_tweets(user_id)
+                self.connection.commit()
+                continue
             except TwitterServerError as e:
                 print(type(e), e)
                 print("サーバーエラーのため1分間待機します")

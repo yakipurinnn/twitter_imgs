@@ -122,7 +122,12 @@ cursor.execute("""CREATE TRIGGER IF NOT EXISTS user_id_to_save_users
 
 cursor.execute("""CREATE TABLE IF NOT EXISTS tweet_archives(
     tweet_id BIGINT UNSIGNED PRIMARY KEY,
-    tweet_json_archive TEXT 
+    tweet_api_archive TEXT 
+    )""")
+
+cursor.execute("""CREATE TABLE IF NOT EXISTS twitter_user_archives(
+    user_id BIGINT UNSIGNED PRIMARY KEY,
+    user_api_archive TEXT 
     )""")
 #インデックス作成
 # cursor.execute("""DROP tweet_id_index on tweets""")

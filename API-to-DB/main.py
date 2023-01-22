@@ -1,9 +1,11 @@
 import tweepy
 import pprint
 import time
+import logging
 import os
 import subprocess
 import MySQLdb
+from logging import config
 from functions.open_json import open_json
 from get_photos import GetPhotos
 from get_user_relations import GetUserRelations
@@ -19,15 +21,16 @@ def collect_user_tweets(connection, get_photos, limit_time, sql=None):
 
     if len(users_id)>0:
         for i in range(len(users_id)):
-            print('user_id:', users_id[i][0])
+            # print('user_id:', users_id[i][0])
+            logger.info(f'user_id: {users_id[i][0]}')
             get_photos.get_user_photos(user_id=users_id[i][0], count=200, max_id=None)
-            print('user_timeline取得から経過時間は', time.time()-limit_time, '秒です')
+            # print('user_timeline取得から経過時間は', time.time()-limit_time, '秒です')
+            logger.info(f'user_timeline取得から経過時間は {time.time()-limit_time} 秒です')
             if time.time()-limit_time > 900:        
                 break
     else:
-        sql  = 'SELECT save_users.user_id FROM save_users INNER JOIN twitter_users ON save_users.user_id = twitter_users.user_id WHERE twitter_users.following=1;'
+        sql  = 'SELECT save_users.user_id FROM save_users INNER JOIN twitter_users ON save_users.user_id = twitter_users.user_id WHERE twitter_users.following=1 ORDER BY save_users.tweets_saved_flag ASC;'
         collect_user_tweets(connection, get_photos, limit_time, sql=sql)
-
 
 def collect_user_relations(connection, get_user_relations, sql=None):
     cursor = connection.cursor()
@@ -38,13 +41,12 @@ def collect_user_relations(connection, get_user_relations, sql=None):
 
     if len(users_status) > 0:
         for i in range(len(users_status)):
-            print('user_id:', users_status[i][0], users_status[i][1])
+            # print('user_id:', users_status[i][0], users_status[i][1])
+            logger.info(f'user_id: {users_status[i][0]} relation_next_cursor: {users_status[i][1]}')
             get_user_relations.get_following_users(following_user_id=users_status[i][0], next_cursor=users_status[i][1], count=200)
     else:
-        sql = 'SELECT save_users.user_id, save_users.relation_next_cursor FROM save_users INNER JOIN twitter_users ON save_users.user_id = twitter_users.user_id WHERE twitter_users.following=1;'
+        sql = 'SELECT save_users.user_id, save_users.relation_next_cursor FROM save_users INNER JOIN twitter_users ON save_users.user_id = twitter_users.user_id WHERE twitter_users.following=1 ORDER BY save_users.relation_saved_flag ASC;'
         collect_user_relations(connection, get_user_relations, sql=sql)
-
-
 
 if __name__ == '__main__':
     cwd = subprocess.run('find /home/ -name twitter_imgs -type d', encoding='utf8', shell=True, capture_output=True, text=True)
@@ -72,29 +74,30 @@ if __name__ == '__main__':
         db = db_config['db'],
         charset = db_config['charset'])
 
+    config.fileConfig('API-to-DB/log/logging.conf')
+    logger = logging.getLogger('main')
+    logger.propagate = False
+
     get_photos = GetPhotos(api, connection)
     get_user_relations = GetUserRelations(api, connection)
     
     temp = 10000
 
     for i in range(temp):
-        print('main: ', i)
+        # print('main: ', i)
+        logger.info(f'main:{i}')
         try:
             collect_user_relations(connection, get_user_relations)
         except TooManyRequests as e:
-            print(type(e), e, 'api制限に達したためuser_timelineの取得に移ります')
+            # print(type(e), e, 'api制限に達したためuser_timelineの取得に移ります')
+            logger.info(f'{type(e)} {e} api制限に達したためuser_timelineの取得に移ります')
 
         time1 = time.time()
         if i%32 == 0 and i>0:
             get_photos.get_latest_photos(user_id=my_user_id['user_id'], count=200)
         
         collect_user_tweets(connection, get_photos, time1)
-        print('15分経過したためuser_ralationsの取得に移ります')
-
-
-
-
-
-
+        # print('15分経過したためuser_ralationsの取得に移ります')
+        logger.info('15分経過したためuser_ralationsの取得に移ります')
 
 
