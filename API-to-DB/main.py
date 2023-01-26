@@ -48,6 +48,27 @@ def collect_user_relations(connection, get_user_relations, sql=None):
         sql = 'SELECT save_users.user_id, save_users.relation_next_cursor FROM save_users INNER JOIN twitter_users ON save_users.user_id = twitter_users.user_id WHERE twitter_users.following=1 ORDER BY save_users.relation_saved_flag ASC;'
         collect_user_relations(connection, get_user_relations, sql=sql)
 
+def collect_user_favorites(connection, get_photos, limit_time, sql=None):
+    cursor = connection.cursor()
+    if sql is None:
+        sql = 'SELECT save_users.user_id FROM save_users INNER JOIN twitter_users ON save_users.user_id = twitter_users.user_id WHERE save_users.favorite_saved_flag=0 AND (twitter_users.following=1);'
+    cursor.execute(sql)
+    users_id = cursor.fetchall()
+
+    if len(users_id)>0:
+        for i in range(len(users_id)):
+            # print('user_id:', users_id[i][0])
+            logger.info(f'user_id: {users_id[i][0]}')
+            get_photos.get_latest_photos(user_id=users_id[i][0], count=200, max_id=None)
+            # print('user_timeline取得から経過時間は', time.time()-limit_time, '秒です')
+            logger.info(f'user_timeline取得から経過時間は {time.time()-limit_time} 秒です')
+            if time.time()-limit_time > 900:        
+                break
+    else:
+        sql  = 'SELECT save_users.user_id FROM save_users INNER JOIN twitter_users ON save_users.user_id = twitter_users.user_id WHERE twitter_users.following=1 ORDER BY save_users.favorite_saved_flag ASC;'
+        collect_user_favorites(connection, get_photos, limit_time, sql=sql)
+
+
 if __name__ == '__main__':
     cwd = subprocess.run('find /home/ -name twitter_imgs -type d', encoding='utf8', shell=True, capture_output=True, text=True)
     os.chdir(cwd.stdout.replace('\n', ''))    #pathの改行コードを削除
@@ -96,7 +117,8 @@ if __name__ == '__main__':
         if i%32 == 0 and i>0:
             get_photos.get_latest_photos(user_id=my_user_id['user_id'], count=200)
         
-        collect_user_tweets(connection, get_photos, time1)
+        # collect_user_tweets(connection, get_photos, time1)
+        collect_user_favorites(connection, get_photos, time1)
         # print('15分経過したためuser_ralationsの取得に移ります')
         logger.info('15分経過したためuser_ralationsの取得に移ります')
 

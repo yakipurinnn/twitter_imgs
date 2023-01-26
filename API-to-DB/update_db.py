@@ -353,7 +353,14 @@ class UpdateDB:
         sql = self.create_update_statement('save_users', save_tweets_columns, 'user_id', user_id).replace("'tweets_saved_flag + 1'", "tweets_saved_flag + 1")
         self.cursor.execute(sql) 
         print(sql)
-        
+
+    def save_favorites(self, user_id):
+        save_favorite_columns = {'favorite_saved_flag': 'favorite_saved_flag + 1'}
+        save_favorite_columns['tweets_update_time'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        sql = self.create_update_statement('save_users', save_favorite_columns, 'user_id', user_id).replace("'favorite_saved_flag + 1'", "favorite_saved_flag + 1")
+        self.cursor.execute(sql) 
+        print(sql)
+
     def save_relations(self, following_user_id,):
         save_relations_columns = {'relation_saved_flag': 'relation_saved_flag + 1'}
         save_relations_columns['relation_update_time'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')    #update_timeも更新する
@@ -366,6 +373,15 @@ class UpdateDB:
         sql = self.create_update_statement('save_users', realtion_next_cursor_columns, 'user_id', following_user_id)
         self.cursor.execute(sql) 
         print(sql)
+
+    def update_favorite_relations(self, user_id):
+        favorite_relations_columns = {'user_id': user_id, 'favorited_tweet_id': self.tweet_id}
+        try:
+            sql = self.create_insert_statement('favorite_relations', favorite_relations_columns)
+            self.cursor.execute(sql) 
+        except IntegrityError as e:
+            print('     既にfavorite_relationsに登録されています')
+            pass
 
     def save_deleted_user(self, user_id):
         deleted_user_columns = {'deleted': 1, 'update_time': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}

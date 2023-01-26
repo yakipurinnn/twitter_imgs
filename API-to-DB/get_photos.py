@@ -39,18 +39,25 @@ class GetPhotos:
                 print(type(e), e)
                 print("非公開アカウントの可能性があります")
                 updatedb = UpdateDB(self.connection)
-                updatedb.save_tweets(user_id)
+                if get_type == 'user_timeline':
+                    updatedb.save_tweets(user_id)
+                elif get_type == 'favorite':
+                    updatedb.save_favorites(user_id)
+                self.connection.commit()
                 break
             except TooManyRequests as e:
                 print(type(e), e)
                 print("twitterAPI制限のため1分間待機します")
-                time.sleep(60)
+                time.sleep(60) 
                 continue
             except NotFound as e:
                 print("既にこのユーザーは削除された可能性があります")
                 updatedb = UpdateDB(self.connection)
                 updatedb.save_deleted_user(user_id)
-                updatedb.save_tweets(user_id)
+                if get_type == 'user_timeline':
+                    updatedb.save_tweets(user_id)
+                elif get_type == 'favorite':
+                    updatedb.save_favorites(user_id)
                 self.connection.commit()
                 continue
             except TwitterServerError as e:
@@ -91,6 +98,18 @@ class GetPhotos:
             else:
                 start = 1
 
+            if len(tweets)<2 and get_type=='favorite':
+                updatedb = UpdateDB(self.connection)
+                updatedb.save_favorites(user_id)
+                self.connection.commit()
+                print('apiよりtweetを取得できなかったため終了します')
+                break
+            elif i==temp-1:
+                updatedb = UpdateDB(self.connection)
+                updatedb.save_favorites(user_id)
+                self.connection.commit()
+                print('apiよりtweetを取得できなかったため終了します')
+
             for j in range(start, count):    #max_idのtweetはループの最後のidと次のループの最初のidで重複するためループは１から始める
                 time1 = time.time()
                 try:
@@ -112,6 +131,7 @@ class GetPhotos:
                     updatedb.update_twitter_users()
                 elif get_type == 'favorite':
                     updatedb.update_twitter_users()
+                    updatedb.update_favorite_relations(user_id)
 
                 if only_tweet_flag == 0:
                     max_id = tweet_id

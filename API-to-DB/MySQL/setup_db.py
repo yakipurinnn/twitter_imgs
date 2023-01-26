@@ -107,10 +107,18 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS retweets(
     retweeted_id BIGINT UNSIGNED
     )""")
 
+cursor.execute("""CREATE TABLE IF NOT EXISTS favorite_relations(
+    user_id BIGINT UNSIGNED,
+    favorited_tweet_id BIGINT UNSIGNED,
+    PRIMARY KEY(user_id, favorited_tweet_id)
+    )""")
+
 cursor.execute("""CREATE TABLE IF NOT EXISTS save_users(
     user_id BIGINT UNSIGNED PRIMARY KEY,
     tweets_saved_flag INT DEFAULT(0), 
     tweets_update_time DATETIME DEFAULT(CURRENT_TIMESTAMP),
+    favorite_saved_flag INT DEFAULT(0), 
+    favorite_update_time DATETIME DEFAULT(CURRENT_TIMESTAMP),
     relation_saved_flag INT DEFAULT(0), 
     relation_next_cursor BIGINT DEFAULT(-1),
     relation_update_time DATETIME DEFAULT(CURRENT_TIMESTAMP)

@@ -1,0 +1,204 @@
+2023-01-26 19:12:06,647:88:INFO:<module>:main:0
+2023-01-26 19:12:15,775:45:INFO:collect_user_relations:user_id: 1372606417 relation_next_cursor: -1
+2023-01-26 19:12:16,050:45:INFO:collect_user_relations:user_id: 2470707354 relation_next_cursor: -1
+2023-01-26 19:12:16,189:45:INFO:collect_user_relations:user_id: 2689139408 relation_next_cursor: -1
+2023-01-26 19:12:16,336:45:INFO:collect_user_relations:user_id: 3305938004 relation_next_cursor: -1
+2023-01-26 19:12:16,478:45:INFO:collect_user_relations:user_id: 4446920537 relation_next_cursor: -1
+2023-01-26 19:12:16,633:45:INFO:collect_user_relations:user_id: 4681944553 relation_next_cursor: -1
+2023-01-26 19:12:16,773:45:INFO:collect_user_relations:user_id: 723536769279385600 relation_next_cursor: 1580416317480743177
+2023-01-26 19:12:19,120:45:INFO:collect_user_relations:user_id: 724169290165817344 relation_next_cursor: -1
+2023-01-26 19:12:26,525:93:INFO:<module>:<class 'tweepy.errors.TooManyRequests'> 429 Too Many Requests
+88 - Rate limit exceeded api制限に達したためuser_timelineの取得に移ります
+2023-01-26 19:12:38,480:25:INFO:collect_user_tweets:user_id: 3246941876
+2023-01-26 19:16:39,043:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 252.5168640613556 秒です
+2023-01-26 19:16:39,044:25:INFO:collect_user_tweets:user_id: 3247730490
+2023-01-26 19:22:47,961:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 621.435352563858 秒です
+2023-01-26 19:22:47,961:25:INFO:collect_user_tweets:user_id: 3247770080
+2023-01-26 19:43:40,970:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 1874.4437532424927 秒です
+2023-01-26 19:43:40,983:101:INFO:<module>:15分経過したためuser_ralationsの取得に移ります
+2023-01-26 19:43:40,984:88:INFO:<module>:main:1
+2023-01-26 19:43:48,648:45:INFO:collect_user_relations:user_id: 1372606417 relation_next_cursor: -1
+2023-01-26 19:43:48,817:45:INFO:collect_user_relations:user_id: 2470707354 relation_next_cursor: -1
+2023-01-26 19:43:48,959:45:INFO:collect_user_relations:user_id: 2689139408 relation_next_cursor: -1
+2023-01-26 19:43:49,101:45:INFO:collect_user_relations:user_id: 3305938004 relation_next_cursor: -1
+2023-01-26 19:43:49,235:45:INFO:collect_user_relations:user_id: 4446920537 relation_next_cursor: -1
+2023-01-26 19:43:49,377:45:INFO:collect_user_relations:user_id: 4681944553 relation_next_cursor: -1
+2023-01-26 19:43:49,523:45:INFO:collect_user_relations:user_id: 724169290165817344 relation_next_cursor: 1576338115023561053
+2023-01-26 19:43:51,751:45:INFO:collect_user_relations:user_id: 724230221973479424 relation_next_cursor: -1
+2023-01-26 19:43:52,202:45:INFO:collect_user_relations:user_id: 724613402090303488 relation_next_cursor: -1
+2023-01-26 19:43:58,521:93:INFO:<module>:<class 'tweepy.errors.TooManyRequests'> 429 Too Many Requests
+88 - Rate limit exceeded api制限に達したためuser_timelineの取得に移ります
+2023-01-26 19:44:14,355:25:INFO:collect_user_tweets:user_id: 3253929283
+2023-01-26 19:52:46,692:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 528.1691436767578 秒です
+2023-01-26 19:52:46,693:25:INFO:collect_user_tweets:user_id: 3260986908
+2023-01-26 19:53:03,116:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 544.5940783023834 秒です
+2023-01-26 19:53:03,116:25:INFO:collect_user_tweets:user_id: 3261217752
+2023-01-26 19:58:55,315:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 896.7920641899109 秒です
+2023-01-26 19:58:55,316:25:INFO:collect_user_tweets:user_id: 3261541760
+2023-01-26 20:02:15,609:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 1097.086827993393 秒です
+2023-01-26 20:02:15,626:101:INFO:<module>:15分経過したためuser_ralationsの取得に移ります
+2023-01-26 20:02:15,627:88:INFO:<module>:main:2
+2023-01-26 20:02:23,005:45:INFO:collect_user_relations:user_id: 1372606417 relation_next_cursor: -1
+2023-01-26 20:02:23,178:45:INFO:collect_user_relations:user_id: 2470707354 relation_next_cursor: -1
+2023-01-26 20:02:23,325:45:INFO:collect_user_relations:user_id: 2689139408 relation_next_cursor: -1
+2023-01-26 20:02:23,467:45:INFO:collect_user_relations:user_id: 3305938004 relation_next_cursor: -1
+2023-01-26 20:02:23,611:45:INFO:collect_user_relations:user_id: 4446920537 relation_next_cursor: -1
+2023-01-26 20:02:23,756:45:INFO:collect_user_relations:user_id: 4681944553 relation_next_cursor: -1
+2023-01-26 20:02:23,902:45:INFO:collect_user_relations:user_id: 724613402090303488 relation_next_cursor: 1537548916516830252
+2023-01-26 20:02:25,811:45:INFO:collect_user_relations:user_id: 724893684282609666 relation_next_cursor: -1
+2023-01-26 20:02:28,923:45:INFO:collect_user_relations:user_id: 724988910422511619 relation_next_cursor: -1
+2023-01-26 20:02:30,865:45:INFO:collect_user_relations:user_id: 725508817320960000 relation_next_cursor: -1
+2023-01-26 20:02:33,327:93:INFO:<module>:<class 'tweepy.errors.TooManyRequests'> 429 Too Many Requests
+88 - Rate limit exceeded api制限に達したためuser_timelineの取得に移ります
+2023-01-26 20:02:48,686:25:INFO:collect_user_tweets:user_id: 3265602312
+2023-01-26 20:05:06,196:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 152.8666787147522 秒です
+2023-01-26 20:05:06,198:25:INFO:collect_user_tweets:user_id: 3265939170
+2023-01-26 20:10:43,056:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 489.72679591178894 秒です
+2023-01-26 20:10:43,057:25:INFO:collect_user_tweets:user_id: 3270912614
+2023-01-26 20:33:45,383:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 1872.0542340278625 秒です
+2023-01-26 20:33:45,392:101:INFO:<module>:15分経過したためuser_ralationsの取得に移ります
+2023-01-26 20:33:45,392:88:INFO:<module>:main:3
+2023-01-26 20:33:52,838:45:INFO:collect_user_relations:user_id: 1372606417 relation_next_cursor: -1
+2023-01-26 20:33:53,120:45:INFO:collect_user_relations:user_id: 2470707354 relation_next_cursor: -1
+2023-01-26 20:33:53,265:45:INFO:collect_user_relations:user_id: 2689139408 relation_next_cursor: -1
+2023-01-26 20:33:53,409:45:INFO:collect_user_relations:user_id: 3305938004 relation_next_cursor: -1
+2023-01-26 20:33:53,562:45:INFO:collect_user_relations:user_id: 4446920537 relation_next_cursor: -1
+2023-01-26 20:33:53,707:45:INFO:collect_user_relations:user_id: 4681944553 relation_next_cursor: -1
+2023-01-26 20:33:53,850:45:INFO:collect_user_relations:user_id: 725508817320960000 relation_next_cursor: 1599403982905574957
+2023-01-26 20:33:54,869:45:INFO:collect_user_relations:user_id: 726122993957502976 relation_next_cursor: -1
+2023-01-26 20:33:59,166:45:INFO:collect_user_relations:user_id: 726805228838772738 relation_next_cursor: -1
+2023-01-26 20:34:03,215:45:INFO:collect_user_relations:user_id: 726919365161963520 relation_next_cursor: -1
+2023-01-26 20:34:03,341:93:INFO:<module>:<class 'tweepy.errors.TooManyRequests'> 429 Too Many Requests
+88 - Rate limit exceeded api制限に達したためuser_timelineの取得に移ります
+2023-01-26 20:34:16,037:25:INFO:collect_user_tweets:user_id: 3271116739
+2023-01-26 20:39:37,322:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 333.97987627983093 秒です
+2023-01-26 20:39:37,323:25:INFO:collect_user_tweets:user_id: 3273861948
+2023-01-26 20:40:47,170:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 403.8277385234833 秒です
+2023-01-26 20:40:47,171:25:INFO:collect_user_tweets:user_id: 3280530120
+2023-01-26 20:41:19,942:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 436.60009837150574 秒です
+2023-01-26 20:41:19,943:25:INFO:collect_user_tweets:user_id: 3291812383
+2023-01-26 20:49:46,109:109:INFO:<module>:main:0
+2023-01-26 20:49:54,193:45:INFO:collect_user_relations:user_id: 1372606417 relation_next_cursor: -1
+2023-01-26 20:49:54,470:45:INFO:collect_user_relations:user_id: 2470707354 relation_next_cursor: -1
+2023-01-26 20:49:54,616:45:INFO:collect_user_relations:user_id: 2689139408 relation_next_cursor: -1
+2023-01-26 20:49:54,756:45:INFO:collect_user_relations:user_id: 3305938004 relation_next_cursor: -1
+2023-01-26 20:49:54,898:45:INFO:collect_user_relations:user_id: 4446920537 relation_next_cursor: -1
+2023-01-26 20:49:55,042:45:INFO:collect_user_relations:user_id: 4681944553 relation_next_cursor: -1
+2023-01-26 20:49:55,178:45:INFO:collect_user_relations:user_id: 726919365161963520 relation_next_cursor: -1
+2023-01-26 20:49:56,084:45:INFO:collect_user_relations:user_id: 726935854774546432 relation_next_cursor: -1
+2023-01-26 20:50:00,692:45:INFO:collect_user_relations:user_id: 727077498891038720 relation_next_cursor: -1
+2023-01-26 20:50:03,399:45:INFO:collect_user_relations:user_id: 727521311690387456 relation_next_cursor: -1
+2023-01-26 20:50:03,519:114:INFO:<module>:<class 'tweepy.errors.TooManyRequests'> 429 Too Many Requests
+88 - Rate limit exceeded api制限に達したためuser_timelineの取得に移ります
+2023-01-26 20:50:10,475:61:INFO:collect_user_favorites:user_id: 4483341
+2023-01-26 20:57:21,936:109:INFO:<module>:main:0
+2023-01-26 20:57:31,923:45:INFO:collect_user_relations:user_id: 1372606417 relation_next_cursor: -1
+2023-01-26 20:57:32,180:114:INFO:<module>:<class 'tweepy.errors.TooManyRequests'> 429 Too Many Requests
+88 - Rate limit exceeded api制限に達したためuser_timelineの取得に移ります
+2023-01-26 20:57:43,611:25:INFO:collect_user_tweets:user_id: 3291812383
+2023-01-26 21:12:36,442:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 904.2620499134064 秒です
+2023-01-26 21:12:36,443:123:INFO:<module>:15分経過したためuser_ralationsの取得に移ります
+2023-01-26 21:12:36,443:109:INFO:<module>:main:1
+2023-01-26 21:12:42,329:45:INFO:collect_user_relations:user_id: 1372606417 relation_next_cursor: -1
+2023-01-26 21:12:42,533:45:INFO:collect_user_relations:user_id: 2470707354 relation_next_cursor: -1
+2023-01-26 21:12:42,674:45:INFO:collect_user_relations:user_id: 2689139408 relation_next_cursor: -1
+2023-01-26 21:12:42,818:45:INFO:collect_user_relations:user_id: 3305938004 relation_next_cursor: -1
+2023-01-26 21:12:42,958:45:INFO:collect_user_relations:user_id: 4446920537 relation_next_cursor: -1
+2023-01-26 21:12:43,173:45:INFO:collect_user_relations:user_id: 4681944553 relation_next_cursor: -1
+2023-01-26 21:12:43,315:45:INFO:collect_user_relations:user_id: 727521311690387456 relation_next_cursor: -1
+2023-01-26 21:12:46,862:45:INFO:collect_user_relations:user_id: 727524674226151424 relation_next_cursor: -1
+2023-01-26 21:12:49,035:45:INFO:collect_user_relations:user_id: 727858596168409092 relation_next_cursor: -1
+2023-01-26 21:12:51,381:45:INFO:collect_user_relations:user_id: 728179195294048257 relation_next_cursor: -1
+2023-01-26 21:12:52,502:114:INFO:<module>:<class 'tweepy.errors.TooManyRequests'> 429 Too Many Requests
+88 - Rate limit exceeded api制限に達したためuser_timelineの取得に移ります
+2023-01-26 21:12:59,306:25:INFO:collect_user_tweets:user_id: 779416771329609728
+2023-01-26 21:15:03,014:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 130.51049733161926 秒です
+2023-01-26 21:15:03,014:123:INFO:<module>:15分経過したためuser_ralationsの取得に移ります
+2023-01-26 21:15:03,014:109:INFO:<module>:main:2
+2023-01-26 21:15:08,101:45:INFO:collect_user_relations:user_id: 1372606417 relation_next_cursor: -1
+2023-01-26 21:15:08,240:114:INFO:<module>:<class 'tweepy.errors.TooManyRequests'> 429 Too Many Requests
+88 - Rate limit exceeded api制限に達したためuser_timelineの取得に移ります
+2023-01-26 21:15:19,553:25:INFO:collect_user_tweets:user_id: 3301595647
+2023-01-26 21:21:11,211:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 362.9701421260834 秒です
+2023-01-26 21:21:11,212:25:INFO:collect_user_tweets:user_id: 3302294173
+2023-01-26 21:21:35,006:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 386.7662687301636 秒です
+2023-01-26 21:21:35,007:25:INFO:collect_user_tweets:user_id: 3304861891
+2023-01-26 21:22:02,106:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 413.86616921424866 秒です
+2023-01-26 21:22:02,106:25:INFO:collect_user_tweets:user_id: 3305938004
+2023-01-26 21:22:03,102:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 414.8618235588074 秒です
+2023-01-26 21:22:03,102:25:INFO:collect_user_tweets:user_id: 3306642260
+2023-01-26 21:34:29,197:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 1160.9562630653381 秒です
+2023-01-26 21:34:29,199:123:INFO:<module>:15分経過したためuser_ralationsの取得に移ります
+2023-01-26 21:34:29,199:109:INFO:<module>:main:3
+2023-01-26 21:34:35,560:45:INFO:collect_user_relations:user_id: 1372606417 relation_next_cursor: -1
+2023-01-26 21:34:35,703:45:INFO:collect_user_relations:user_id: 2470707354 relation_next_cursor: -1
+2023-01-26 21:34:35,840:45:INFO:collect_user_relations:user_id: 2689139408 relation_next_cursor: -1
+2023-01-26 21:34:35,986:45:INFO:collect_user_relations:user_id: 3305938004 relation_next_cursor: -1
+2023-01-26 21:34:36,118:45:INFO:collect_user_relations:user_id: 4446920537 relation_next_cursor: -1
+2023-01-26 21:34:36,251:45:INFO:collect_user_relations:user_id: 4681944553 relation_next_cursor: -1
+2023-01-26 21:34:36,383:45:INFO:collect_user_relations:user_id: 728179195294048257 relation_next_cursor: 1737498342432614508
+2023-01-26 21:34:37,061:45:INFO:collect_user_relations:user_id: 730285284433133568 relation_next_cursor: -1
+2023-01-26 21:34:46,693:114:INFO:<module>:<class 'tweepy.errors.TooManyRequests'> 429 Too Many Requests
+88 - Rate limit exceeded api制限に達したためuser_timelineの取得に移ります
+2023-01-26 21:34:58,395:25:INFO:collect_user_tweets:user_id: 3309627960
+2023-01-26 21:41:09,028:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 382.33343863487244 秒です
+2023-01-26 21:41:09,028:25:INFO:collect_user_tweets:user_id: 3309724100
+2023-01-26 21:41:38,310:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 411.61579632759094 秒です
+2023-01-26 21:41:38,310:25:INFO:collect_user_tweets:user_id: 3309810913
+2023-01-26 21:42:45,276:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 478.5819790363312 秒です
+2023-01-26 21:42:45,276:25:INFO:collect_user_tweets:user_id: 3309818378
+2023-01-26 21:45:52,370:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 665.6759121417999 秒です
+2023-01-26 21:45:52,371:25:INFO:collect_user_tweets:user_id: 3311625145
+2023-01-26 21:46:48,182:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 721.487799167633 秒です
+2023-01-26 21:46:48,182:25:INFO:collect_user_tweets:user_id: 3317953147
+2023-01-26 21:46:56,359:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 729.6648426055908 秒です
+2023-01-26 21:46:56,359:25:INFO:collect_user_tweets:user_id: 3320746226
+2023-01-26 21:47:05,851:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 739.1563308238983 秒です
+2023-01-26 21:47:05,851:25:INFO:collect_user_tweets:user_id: 3321204048
+2023-01-26 22:09:38,546:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 2091.8521354198456 秒です
+2023-01-26 22:09:38,552:123:INFO:<module>:15分経過したためuser_ralationsの取得に移ります
+2023-01-26 22:09:38,553:109:INFO:<module>:main:4
+2023-01-26 22:09:44,939:45:INFO:collect_user_relations:user_id: 1372606417 relation_next_cursor: -1
+2023-01-26 22:09:45,095:45:INFO:collect_user_relations:user_id: 2470707354 relation_next_cursor: -1
+2023-01-26 22:09:45,239:45:INFO:collect_user_relations:user_id: 2689139408 relation_next_cursor: -1
+2023-01-26 22:09:45,378:45:INFO:collect_user_relations:user_id: 3305938004 relation_next_cursor: -1
+2023-01-26 22:09:45,530:45:INFO:collect_user_relations:user_id: 4446920537 relation_next_cursor: -1
+2023-01-26 22:09:45,683:45:INFO:collect_user_relations:user_id: 4681944553 relation_next_cursor: -1
+2023-01-26 22:09:45,829:45:INFO:collect_user_relations:user_id: 730285284433133568 relation_next_cursor: 1631597996922909398
+2023-01-26 22:09:46,490:45:INFO:collect_user_relations:user_id: 730759275899822080 relation_next_cursor: -1
+2023-01-26 22:09:46,947:45:INFO:collect_user_relations:user_id: 731357434929807361 relation_next_cursor: -1
+2023-01-26 22:09:54,282:45:INFO:collect_user_relations:user_id: 733689080307945476 relation_next_cursor: -1
+2023-01-26 22:09:54,403:114:INFO:<module>:<class 'tweepy.errors.TooManyRequests'> 429 Too Many Requests
+88 - Rate limit exceeded api制限に達したためuser_timelineの取得に移ります
+2023-01-26 22:10:07,098:25:INFO:collect_user_tweets:user_id: 3322175545
+2023-01-26 22:13:48,963:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 234.55942153930664 秒です
+2023-01-26 22:13:48,964:25:INFO:collect_user_tweets:user_id: 3322666297
+2023-01-26 22:17:08,155:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 433.75133323669434 秒です
+2023-01-26 22:17:08,155:25:INFO:collect_user_tweets:user_id: 3332744719
+2023-01-26 22:20:12,478:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 618.0744979381561 秒です
+2023-01-26 22:20:12,480:25:INFO:collect_user_tweets:user_id: 3333337394
+2023-01-26 22:21:45,002:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 710.598317861557 秒です
+2023-01-26 22:21:45,002:25:INFO:collect_user_tweets:user_id: 3336664572
+2023-01-26 22:24:25,688:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 871.2841501235962 秒です
+2023-01-26 22:24:25,688:25:INFO:collect_user_tweets:user_id: 3384436273
+2023-01-26 22:25:24,046:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 929.6425528526306 秒です
+2023-01-26 22:25:24,049:123:INFO:<module>:15分経過したためuser_ralationsの取得に移ります
+2023-01-26 22:25:24,049:109:INFO:<module>:main:5
+2023-01-26 22:25:30,607:45:INFO:collect_user_relations:user_id: 1372606417 relation_next_cursor: -1
+2023-01-26 22:25:30,761:45:INFO:collect_user_relations:user_id: 2470707354 relation_next_cursor: -1
+2023-01-26 22:25:30,909:45:INFO:collect_user_relations:user_id: 2689139408 relation_next_cursor: -1
+2023-01-26 22:25:31,048:45:INFO:collect_user_relations:user_id: 3305938004 relation_next_cursor: -1
+2023-01-26 22:25:31,190:45:INFO:collect_user_relations:user_id: 4446920537 relation_next_cursor: -1
+2023-01-26 22:25:31,337:45:INFO:collect_user_relations:user_id: 4681944553 relation_next_cursor: -1
+2023-01-26 22:25:31,484:45:INFO:collect_user_relations:user_id: 733689080307945476 relation_next_cursor: -1
+2023-01-26 22:25:34,641:45:INFO:collect_user_relations:user_id: 734602273125466113 relation_next_cursor: -1
+2023-01-26 22:25:40,832:45:INFO:collect_user_relations:user_id: 734785438104190976 relation_next_cursor: -1
+2023-01-26 22:25:40,954:114:INFO:<module>:<class 'tweepy.errors.TooManyRequests'> 429 Too Many Requests
+88 - Rate limit exceeded api制限に達したためuser_timelineの取得に移ります
+2023-01-26 22:25:53,585:25:INFO:collect_user_tweets:user_id: 3390704358
+2023-01-26 22:32:16,208:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 395.25436210632324 秒です
+2023-01-26 22:32:16,209:25:INFO:collect_user_tweets:user_id: 3394720251
+2023-01-26 22:35:33,309:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 592.3553462028503 秒です
+2023-01-26 22:35:33,310:25:INFO:collect_user_tweets:user_id: 3421278232
+2023-01-26 22:40:29,518:28:INFO:collect_user_tweets:user_timeline取得から経過時間は 888.564257144928 秒です
+2023-01-26 22:40:29,518:25:INFO:collect_user_tweets:user_id: 3443824339
