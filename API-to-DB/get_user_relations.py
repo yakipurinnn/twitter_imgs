@@ -33,6 +33,9 @@ class GetUserRelations:
                 print('取得されたフォロワーは', len(following_users_status[0]), '件です')
                 #フォロー数が0の場合、break
                 if len(following_users_status[0])==0 and last_user_flag==False and next_cursor==-1:
+                    updatedb = UpdateDB(self.connection)
+                    updatedb.save_relations(following_user_id)
+                    self.connection.commit()
                     break
             except Unauthorized as e:
                 print(type(e), e)

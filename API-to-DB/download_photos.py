@@ -31,7 +31,7 @@ class DownloadPhotos:
 
         #保存するディレクトリをtwitter_user毎に作成
         try:
-            # os.makedirs(self.user_photos_path)
+            os.makedirs(self.user_photos_path)
             if 'profile_banner_url' in tweet['user'].keys():
                 os.makedirs(self.user_profile_banners_path)
             if 'profile_image_url' in tweet['user'].keys():
@@ -58,9 +58,9 @@ class DownloadPhotos:
                 download_file(self.profile_image_url, self.profile_image_path)
 
         #tweet画像を保存する場合
-        # for i in range(self.photo_count):
-        #     photo_url = self.photo_url_list[i]
-        #     photo_path = self.photo_path_list[i]
+        for i in range(self.photo_count):
+            photo_url = self.photo_url_list[i]
+            photo_path = self.photo_path_list[i]
 
-        #     if not os.path.exists(photo_path):
-        #         download_file(photo_url, photo_path)
+            if not os.path.exists(photo_path):
+                download_file(photo_url, photo_path)

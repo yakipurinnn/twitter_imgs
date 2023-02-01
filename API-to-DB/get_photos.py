@@ -24,7 +24,7 @@ class GetPhotos:
     def get_photos(self, get_type, user_id, count, max_id=None):
         temp = 1000
         if get_type == 'favorite':
-            temp = 16
+            temp = 18
         start = 0
         total = 0
         for i in range(temp):
@@ -98,17 +98,13 @@ class GetPhotos:
             else:
                 start = 1
 
-            if len(tweets)<2 and get_type=='favorite':
+            if len(tweets)<2 and get_type=='favorite' or i==temp-1 and get_type=='favorite':
                 updatedb = UpdateDB(self.connection)
                 updatedb.save_favorites(user_id)
                 self.connection.commit()
                 print('apiよりtweetを取得できなかったため終了します')
-                break
-            elif i==temp-1:
-                updatedb = UpdateDB(self.connection)
-                updatedb.save_favorites(user_id)
-                self.connection.commit()
-                print('apiよりtweetを取得できなかったため終了します')
+                if len(tweets)<2 and get_type=='favorite':
+                    break
 
             for j in range(start, count):    #max_idのtweetはループの最後のidと次のループの最初のidで重複するためループは１から始める
                 time1 = time.time()
@@ -182,9 +178,9 @@ class GetPhotos:
         else:
             try:
                 updatedb.insert_tweet_status()    #tweetのstatusをDBにinsert
-                if tweet_type == 'photo':    #画像ダウンロード
-                    download_phtos = DownloadPhotos(tweet)
-                    download_phtos.download()
+                # if tweet_type == 'photo':    #画像ダウンロードする場合
+                #     download_phtos = DownloadPhotos(tweet)
+                #     download_phtos.download()
             except IntegrityError as e:
                 updatedb.update_tweet_status()    #tweetのstatusをupdate
                 print('    このツイートは既に登録済みです。ツイート情報を更新します。', 'tweet_id:', tweet_id)

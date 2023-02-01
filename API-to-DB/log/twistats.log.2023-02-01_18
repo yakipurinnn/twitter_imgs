@@ -1,0 +1,80 @@
+2023-02-01 18:30:00,240:64:INFO:collect_user_favorites:user_timeline取得から経過時間は 1447.0502440929413 秒です
+2023-02-01 18:30:00,246:123:INFO:<module>:15分経過したためuser_ralationsの取得に移ります
+2023-02-01 18:30:00,246:109:INFO:<module>:main:12
+2023-02-01 18:30:17,467:45:INFO:collect_user_relations:user_id: 1162415926110609408 relation_next_cursor: 1689226479444865312
+2023-02-01 18:30:20,152:45:INFO:collect_user_relations:user_id: 1163075460760125446 relation_next_cursor: -1
+2023-02-01 18:30:20,298:45:INFO:collect_user_relations:user_id: 1163206714524520448 relation_next_cursor: -1
+2023-02-01 18:30:20,811:45:INFO:collect_user_relations:user_id: 1163701625275346944 relation_next_cursor: -1
+2023-02-01 18:30:25,651:45:INFO:collect_user_relations:user_id: 1164140995606245377 relation_next_cursor: -1
+2023-02-01 18:30:26,541:45:INFO:collect_user_relations:user_id: 1164348286339182592 relation_next_cursor: -1
+2023-02-01 18:30:31,021:114:INFO:<module>:<class 'tweepy.errors.TooManyRequests'> 429 Too Many Requests
+88 - Rate limit exceeded api制限に達したためuser_timelineの取得に移ります
+2023-02-01 18:30:48,164:61:INFO:collect_user_favorites:user_id: 579850019
+2023-02-01 18:33:26,885:64:INFO:collect_user_favorites:user_timeline取得から経過時間は 175.86266541481018 秒です
+2023-02-01 18:33:26,885:61:INFO:collect_user_favorites:user_id: 580448205
+2023-02-01 18:47:37,606:64:INFO:collect_user_favorites:user_timeline取得から経過時間は 1026.584127664566 秒です
+2023-02-01 18:47:37,607:123:INFO:<module>:15分経過したためuser_ralationsの取得に移ります
+2023-02-01 18:47:37,607:109:INFO:<module>:main:13
+2023-02-01 18:47:54,303:45:INFO:collect_user_relations:user_id: 1164348286339182592 relation_next_cursor: 1684698572328768628
+2023-02-01 18:47:58,284:45:INFO:collect_user_relations:user_id: 1165220685511196673 relation_next_cursor: -1
+2023-02-01 18:48:02,432:45:INFO:collect_user_relations:user_id: 1165628783887441921 relation_next_cursor: -1
+2023-02-01 18:48:08,405:114:INFO:<module>:<class 'tweepy.errors.TooManyRequests'> 429 Too Many Requests
+88 - Rate limit exceeded api制限に達したためuser_timelineの取得に移ります
+2023-02-01 18:48:25,144:61:INFO:collect_user_favorites:user_id: 582504091
+2023-02-01 18:48:46,347:64:INFO:collect_user_favorites:user_timeline取得から経過時間は 37.940484285354614 秒です
+2023-02-01 18:48:46,348:61:INFO:collect_user_favorites:user_id: 585076465
+2023-02-01 18:52:15,687:64:INFO:collect_user_favorites:user_timeline取得から経過時間は 247.27985000610352 秒です
+2023-02-01 18:52:15,687:61:INFO:collect_user_favorites:user_id: 587404161
+2023-02-01 19:01:37,050:64:INFO:collect_user_favorites:user_timeline取得から経過時間は 808.6428873538971 秒です
+2023-02-01 19:01:37,050:61:INFO:collect_user_favorites:user_id: 588027441
+2023-02-01 19:14:54,890:64:INFO:collect_user_favorites:user_timeline取得から経過時間は 1606.483241558075 秒です
+2023-02-01 19:14:54,893:123:INFO:<module>:15分経過したためuser_ralationsの取得に移ります
+2023-02-01 19:14:54,893:109:INFO:<module>:main:14
+2023-02-01 19:15:13,065:45:INFO:collect_user_relations:user_id: 1165628783887441921 relation_next_cursor: 1675529524279051311
+2023-02-01 19:15:14,281:45:INFO:collect_user_relations:user_id: 1166583483592052737 relation_next_cursor: -1
+2023-02-01 19:15:17,279:45:INFO:collect_user_relations:user_id: 1166588690711351298 relation_next_cursor: -1
+2023-02-01 19:15:21,830:45:INFO:collect_user_relations:user_id: 1168586968248115203 relation_next_cursor: -1
+2023-02-01 19:15:23,670:45:INFO:collect_user_relations:user_id: 1169457198973382656 relation_next_cursor: -1
+2023-02-01 19:15:25,916:45:INFO:collect_user_relations:user_id: 1170706682021703680 relation_next_cursor: -1
+2023-02-01 19:15:27,003:114:INFO:<module>:<class 'tweepy.errors.TooManyRequests'> 429 Too Many Requests
+88 - Rate limit exceeded api制限に達したためuser_timelineの取得に移ります
+2023-02-01 19:15:45,225:61:INFO:collect_user_favorites:user_id: 592624246
+2023-02-01 19:19:58,067:64:INFO:collect_user_favorites:user_timeline取得から経過時間は 271.0623586177826 秒です
+2023-02-01 19:19:58,068:61:INFO:collect_user_favorites:user_id: 595473140
+2023-02-01 19:24:42,945:64:INFO:collect_user_favorites:user_timeline取得から経過時間は 555.9404296875 秒です
+2023-02-01 19:24:42,945:61:INFO:collect_user_favorites:user_id: 602887083
+2023-02-01 19:38:51,030:64:INFO:collect_user_favorites:user_timeline取得から経過時間は 1404.02574467659 秒です
+2023-02-01 19:38:51,032:123:INFO:<module>:15分経過したためuser_ralationsの取得に移ります
+2023-02-01 19:38:51,033:109:INFO:<module>:main:15
+2023-02-01 19:39:08,836:45:INFO:collect_user_relations:user_id: 1170706682021703680 relation_next_cursor: 1734615302204602929
+2023-02-01 19:39:12,630:45:INFO:collect_user_relations:user_id: 1172540834975076352 relation_next_cursor: -1
+2023-02-01 19:39:17,086:45:INFO:collect_user_relations:user_id: 1173963589444497408 relation_next_cursor: -1
+2023-02-01 19:39:23,513:45:INFO:collect_user_relations:user_id: 1174288958781440000 relation_next_cursor: -1
+2023-02-01 19:39:24,706:114:INFO:<module>:<class 'tweepy.errors.TooManyRequests'> 429 Too Many Requests
+88 - Rate limit exceeded api制限に達したためuser_timelineの取得に移ります
+2023-02-01 19:39:42,643:61:INFO:collect_user_favorites:user_id: 602904575
+2023-02-01 19:47:23,178:64:INFO:collect_user_favorites:user_timeline取得から経過時間は 478.4700012207031 秒です
+2023-02-01 19:47:23,178:61:INFO:collect_user_favorites:user_id: 604111956
+2023-02-01 19:56:37,512:64:INFO:collect_user_favorites:user_timeline取得から経過時間は 1032.8044846057892 秒です
+2023-02-01 19:56:37,513:123:INFO:<module>:15分経過したためuser_ralationsの取得に移ります
+2023-02-01 19:56:37,513:109:INFO:<module>:main:16
+2023-02-01 19:56:54,373:45:INFO:collect_user_relations:user_id: 1174288958781440000 relation_next_cursor: 1669808292771371775
+2023-02-01 19:56:57,455:45:INFO:collect_user_relations:user_id: 1174612284091453440 relation_next_cursor: -1
+2023-02-01 19:57:00,244:45:INFO:collect_user_relations:user_id: 1174625916456062977 relation_next_cursor: -1
+2023-02-01 19:57:02,859:45:INFO:collect_user_relations:user_id: 1175055665103962118 relation_next_cursor: -1
+2023-02-01 19:57:05,646:45:INFO:collect_user_relations:user_id: 1176004865740296193 relation_next_cursor: -1
+2023-02-01 19:57:08,749:114:INFO:<module>:<class 'tweepy.errors.TooManyRequests'> 429 Too Many Requests
+88 - Rate limit exceeded api制限に達したためuser_timelineの取得に移ります
+2023-02-01 19:57:25,856:61:INFO:collect_user_favorites:user_id: 604186004
+2023-02-01 20:07:14,562:64:INFO:collect_user_favorites:user_timeline取得から経過時間は 605.8107833862305 秒です
+2023-02-01 20:07:14,562:61:INFO:collect_user_favorites:user_id: 609125635
+2023-02-01 20:14:09,132:64:INFO:collect_user_favorites:user_timeline取得から経過時間は 1020.3810153007507 秒です
+2023-02-01 20:14:09,132:123:INFO:<module>:15分経過したためuser_ralationsの取得に移ります
+2023-02-01 20:14:09,132:109:INFO:<module>:main:17
+2023-02-01 20:14:26,387:45:INFO:collect_user_relations:user_id: 1176004865740296193 relation_next_cursor: 1706712649082805172
+2023-02-01 20:14:42,437:45:INFO:collect_user_relations:user_id: 1176785589229588480 relation_next_cursor: -1
+2023-02-01 20:14:42,556:114:INFO:<module>:<class 'tweepy.errors.TooManyRequests'> 429 Too Many Requests
+88 - Rate limit exceeded api制限に達したためuser_timelineの取得に移ります
+2023-02-01 20:14:59,779:61:INFO:collect_user_favorites:user_id: 614818198
+2023-02-01 20:26:25,450:64:INFO:collect_user_favorites:user_timeline取得から経過時間は 702.8933529853821 秒です
+2023-02-01 20:26:25,451:61:INFO:collect_user_favorites:user_id: 617743117
